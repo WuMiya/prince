@@ -1,3 +1,21 @@
 <div class="wrapper">
   <canvas id="canvas">{{ chart }}</canvas>
 </div>
+
+
+<table border="1">
+  <thead>
+    <th>#</th>
+    <th>Year</th>
+    <th>Weeks in top 100 charts</th>
+    <th>Cummulative weeks in charts</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let w of worksheet; let id = index" > 
+      <th>{{ id+1 }}</th>
+      <td>{{ w.year }}</td>
+      <td>{{ w.weeks_in_top_100charts }}</td>
+      <td>{{ w.cummulative_weeks_in_charts_lifetime }}</td>
+    </tr>
+  </tbody>
+</table>

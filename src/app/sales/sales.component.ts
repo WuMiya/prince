@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; 
 import { Chart } from 'chart.js';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-sales',
@@ -8,10 +10,22 @@ import { Chart } from 'chart.js';
 })
 export class SalesComponent implements OnInit {
 
-  chart: any[] = []; // This will hold our chart info
-
-
-  constructor() {}
+  chart: any[]; // This will hold our chart info
+  worksheet: any[];
+  
+  constructor(private http: HttpClient) {
+    this.http.get('prince.xlsx', {responseType: "arraybuffer"})
+      .subscribe((data) => {
+        const u8 = new Uint8Array(data);
+        const wb: XLSX.WorkBook = XLSX.read(u8, {type: 'array'});
+        const ws: XLSX.WorkSheet = wb.Sheets[wb.SheetNames[2]];
+        const worksheet = XLSX.utils.sheet_to_json(ws);
+        this.worksheet = worksheet;
+      }, (err) => {
+        console.log(err);
+      });
+  
+  }
 
   ngOnInit() {
 
@@ -30,7 +44,7 @@ export class SalesComponent implements OnInit {
             "pressure": 1016.76,
             "sea_level": 1024.45,
             "grnd_level": 1016.76,
-            "humidity": 100
+            "humidity": 27.9
           },
           "wind": {
             "speed": 4.59,
@@ -60,7 +74,7 @@ export class SalesComponent implements OnInit {
             "pressure": 1012.12,
             "sea_level": 1019.71,
             "grnd_level": 1012.12,
-            "humidity": 98
+            "humidity": 28.37
           },
           "wind": {
             "speed": 4.04,
@@ -86,7 +100,7 @@ export class SalesComponent implements OnInit {
           "main": {
             "temp": 279.38,
             "pressure": 1011,
-            "humidity": 93,
+            "humidity": 27.5,
             "temp_min": 278.15,
             "temp_max": 280.15
           },
@@ -115,11 +129,12 @@ export class SalesComponent implements OnInit {
         }
       ]
     }
-    
-    let temp_max = mydata['list'].map(res => res.main.temp_max);
-    let temp_min = mydata['list'].map(res => res.main.temp_min);
-    let alldates = mydata['list'].map(res => res.dt);
 
+    let temp_max = mydata['list'].map(res => (res.main.temp_max/10).toFixed(2));
+    let temp_min = mydata['list'].map(res => (res.main.temp_min/10).toFixed(2));
+    let humidity = mydata['list'].map(res => (res.main.humidity).toFixed(2));
+    let alldates = mydata['list'].map(res => res.dt);
+    
     let weatherDates:any[] = [];
 
     // format the date time
@@ -135,35 +150,46 @@ export class SalesComponent implements OnInit {
           datasets: [
             {
               data: temp_max,
+              label: 'temp_max',
               borderColor: '#3cba9f',
               fill: false
             },
             {
               data: temp_min,
+              label: 'temp_min',
               borderColor: '#ffcc00',
               fill: false
             },
+            {
+              data: humidity,
+              label: 'humidity',
+              borderColor: '#2196F3',
+              fill: false
+            }
           ]
         },
         options: {
-          legend: {
-            display: false
-          },
           scales: {
             xAxes: [{
               display: true
             }],
-            yAxes: [{
-              display: true
-            }],
+          //   yAxes: [{
+          //     ticks: {
+          //         // suggestedMin: 27,
+          //         // suggestedMax: 30,
+          //         // stepSize: 0.3,
+          //         // callback: function(value, index, values) {
+          //         //   return value + ' C';
+          //       }
+          //     }
+          // }]
           }
         }
       });
     })
-
     
   }
 
-  
+
 
 }
