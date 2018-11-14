@@ -6,13 +6,15 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TopChartsComponent } from './top-charts/top-charts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     PageNotFoundComponent,
-    HomeComponent 
+    HomeComponent,
+    TopChartsComponent 
   ],
   imports: [
     BrowserModule,
