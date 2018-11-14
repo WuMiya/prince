@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<div class="inner-wrapper">
+    <mdb-card *ngFor="let w of worksheet | slice:0:show let i=index">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <mdb-card-img src="{{w.image_url}}" alt="Card image cap"></mdb-card-img>
+      </div>
+      <mdb-card-body class="text-center">
+        <mdb-card-title>
+          <h4>{{w.Album}}</h4>
+        </mdb-card-title>
+        <mdb-card-text ngMaxlength="100"> 
+          {{(w.Album_Description.length>170)? (w.Album_Description | slice:0:170)+'...':(w.Album_Description)}}
+        </mdb-card-text>
+        <a href="{{w.Album_about_URL}}" target="_blank" mdbBtn color="primary" mdbWavesEffect>Learn more</a>
+      </mdb-card-body>
+    </mdb-card>
+    <Button mdbBtn color="cyan" mdbWavesEffect *ngIf="show == 12" (click)="show = worksheet.length" style="margin: 60px 0">
+      Load More
+    </Button>
+</div>
