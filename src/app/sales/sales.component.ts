@@ -47,15 +47,29 @@ export class SalesComponent implements OnInit {
                 data: worldwide_Sales,
                 label: 'Worldwide Sales',
                 borderColor: '#ba3c96',
-                fill: false
+                fill: false,
+                borderWidth: 5
               }
             ]
           },
           options: {
             scales: {
               xAxes: [{
-                display: true
+                display: true,
+                ticks: {
+                  fontColor: '#fff',
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  fontColor: '#fff',
+                }
               }]
+            },
+            legend: {
+              labels: {
+                fontColor: '#fff'
+              }
             }
           }
         });
@@ -71,7 +85,8 @@ export class SalesComponent implements OnInit {
                 type: 'line',
                 data: ttl_wk_in_charts,
                 label: 'cummulative weeks (unit of 10)',
-                borderColor: '#ffcc00'
+                borderColor: '#ffcc00',
+                borderWidth: 5
               }],
             labels: years1,
           },
@@ -81,8 +96,21 @@ export class SalesComponent implements OnInit {
             },
             scales: {
               xAxes: [{
-                display: true
+                display: true,
+                ticks: {
+                  fontColor: '#fff',
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  fontColor: '#fff',
+                }
               }]
+            },
+            legend: {
+              labels: {
+                fontColor: '#fff'
+              }
             }
           }
         });

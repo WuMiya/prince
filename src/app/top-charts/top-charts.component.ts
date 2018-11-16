@@ -50,8 +50,21 @@ export class TopChartsComponent implements OnInit {
             },
             scales: {
               xAxes: [{
-                display: true
+                display: true,
+                ticks: {
+                  fontColor: '#fff',
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  fontColor: '#fff',
+                }
               }]
+            },
+            legend: {
+              labels: {
+                fontColor: '#fff'
+              }
             }
           }
         });

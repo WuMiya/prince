@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    background-color: #222;
+}
+
 body {
     font-family: Helvetica Neue, Arial, sans-serif;
     text-align: center;  
+    background-color: #222 !important;
 }
 
 .wrapper {
@@ -14,6 +19,7 @@ h1 {
     font-size: 3em;
     margin: 0 0 0.1em 0;
     text-align: center;
+    color: #fff !important;
 }
 
 h2 {
@@ -117,4 +123,5 @@ mdb-card.card:hover {
 .table {
     display: inline;
     margin-right: 60px;
+    color: #fff;
 }
