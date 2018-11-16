@@ -12,7 +12,8 @@ export class SalesComponent implements OnInit {
 
   chart: any; // This will hold our chart info
   worksheet: any[];
-  
+  worksheet1: any[];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -24,11 +25,18 @@ export class SalesComponent implements OnInit {
         const ws: XLSX.WorkSheet = wb.Sheets[wb.SheetNames[0]];
         const worksheet = XLSX.utils.sheet_to_json(ws);
         this.worksheet = worksheet;
-        console.log(this.worksheet);
+
+        const ws1: XLSX.WorkSheet = wb.Sheets[wb.SheetNames[2]];
+        const worksheet1 = XLSX.utils.sheet_to_json(ws1);
+        this.worksheet1 = worksheet1;
+
+        let wk_in_charts = this.worksheet1.map(res => res.weeks_in_top_100charts);
+        let ttl_wk_in_charts = this.worksheet1.map(res => res.cummulative_weeks_in_charts_lifetime/10);
+        let years1 = this.worksheet1.map(res => res.year);
 
         let worldwide_Sales = this.worksheet.map(res => res.worldwide_Sales);
         let years = this.worksheet.map(res => res.Year);
-
+       
         this.chart = new Chart('canvas', { 
           type: 'line',
           data: {
@@ -38,7 +46,7 @@ export class SalesComponent implements OnInit {
               {
                 data: worldwide_Sales,
                 label: 'Worldwide Sales',
-                borderColor: '#3cba9f',
+                borderColor: '#ba3c96',
                 fill: false
               }
             ]
@@ -51,6 +59,36 @@ export class SalesComponent implements OnInit {
             }
           }
         });
+
+        this.chart = new Chart('canvas1', { 
+          type: 'bar',
+          data: {
+            datasets: [{
+                data: wk_in_charts,
+                label: 'week in top 100 charts',
+                backgroundColor: '#3cba9f',
+              },{
+                type: 'line',
+                data: ttl_wk_in_charts,
+                label: 'cummulative weeks (unit of 10)',
+                borderColor: '#ffcc00'
+              }],
+            labels: years1,
+          },
+          options: {
+            tooltips: {
+              mode: 'index',
+            },
+            scales: {
+              xAxes: [{
+                display: true
+              }]
+            }
+          }
+        });
+
+
+
       }, (err) => {
         console.log(err);
       });

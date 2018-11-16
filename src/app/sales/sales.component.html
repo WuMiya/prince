@@ -1,3 +1,24 @@
 <div class="wrapper">
   <canvas id="canvas">{{chart}}</canvas>
 </div>
+<div class="wrapper">
+  <canvas id="canvas1">{{chart}}</canvas>
+</div>
+<div class="wrapper">
+  <table mdbTable bordered="true" class="w-auto" striped="true">
+    <thead class="black white-text">
+      <th>#</th>
+      <th>Year</th>
+      <th>Album</th>
+      <th>Sales</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let w of worksheet; let id = index" > 
+        <th>{{id+1}}</th>
+        <td>{{w.Year}}</td>
+        <td>{{w.Album}}</td>
+        <td>{{w.worldwide_Sales}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
