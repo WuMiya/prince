@@ -86,7 +86,7 @@ export class SalesComponent implements OnInit {
                 data: ttl_wk_in_charts,
                 label: 'cummulative weeks (unit of 10)',
                 borderColor: '#ffcc00',
-                borderWidth: 5
+                borderWidth: 4
               }],
             labels: years1,
           },

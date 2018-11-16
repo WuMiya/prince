@@ -1,8 +1,9 @@
 <div class="wrapper">
+  <i class="fa fa-table" aria-hidden="true" (click)="showDetails = ! showDetails"></i>
   <canvas id="canvas">{{chart}}</canvas>
 </div>
 <div class="wrapper">
-  <table mdbTable bordered="true" class="w-auto" hover="true">
+  <table *ngIf="showDetails" mdbTable bordered="true" class="w-auto" hover="true">
     <thead class="black white-text">
       <th>#</th>
       <th>Year</th>
