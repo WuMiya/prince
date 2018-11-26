@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-page-not-found',
   template: `
-    <p>
-      Page Not Found!
-    </p>
+    <div class="not-found">
+      <h2>
+        Page Not Found!
+      </h2>
+    </div>
   `,
   styles: []
 })
