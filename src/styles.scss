@@ -112,12 +112,23 @@ mdb-card.card:hover {
 }
 
 .inner-wrapper {
-    width: 1600px;
+    width: 1500px;
     margin: auto;
     display: flex;
     justify-content: center;
     flex-flow: wrap;
-    align-items: center;
+    align-items: stretch;
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1520px) {
+    .inner-wrapper {
+        width: 1280px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        flex-flow: wrap;
+        align-items: stretch;
+    }
 }
 
 .table {
@@ -136,3 +147,12 @@ i.fa.fa-table {
     font-size: 20px;
 }
 
+.inner-wrapper .card {
+    box-shadow: none;
+}
+
+canvas#canvas.chartjs-render-monitor {
+    width: 1080px !important;
+    height: auto !important;
+    float: right;
+}

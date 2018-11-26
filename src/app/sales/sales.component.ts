@@ -9,7 +9,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./sales.component.scss']
 })
 export class SalesComponent implements OnInit {
-
+  showDetails: boolean;
+  showWeeks: boolean;
   chart: any; // This will hold our chart info
   worksheet: any[];
   worksheet1: any[];

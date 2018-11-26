@@ -9,7 +9,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./top-charts.component.scss']
 })
 export class TopChartsComponent implements OnInit {
-
+  showDetails: boolean;
+  showWeeks: boolean;
   chart: any; // This will hold our chart info
   worksheet: any[];
   
