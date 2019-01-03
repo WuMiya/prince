@@ -164,3 +164,13 @@ canvas#canvas.chartjs-render-monitor {
 mdb-card:last-child {
     margin-right: auto;
 }
+
+@media only screen and (max-width: 720px) {
+    mdb-card.card {
+        width: 85%;
+    }
+
+    .inner-wrapper {
+        width: unset;
+    }
+}

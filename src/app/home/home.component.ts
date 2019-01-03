@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('.././assets/prince.xlsx', {responseType: "arraybuffer"})
+    this.http.get('https://wumiya.github.io/prince/assets/prince.xlsx', {responseType: "arraybuffer"})
       .subscribe((data) => {
         const u8 = new Uint8Array(data);
         const wb: XLSX.WorkBook = XLSX.read(u8, {type: 'array'});
